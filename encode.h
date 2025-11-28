@@ -57,25 +57,7 @@ check wheather the [--check_operation--] is
 
 /* Read and validate Encode args from argv */
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
-/*
---argv[2]--
------->check for .bmp =====>(use strstr())
--------->pass argv[]-->return the address 
-------------------------------->then strcmp()                               
---------------------------------------------->strcmp(strstr(argc[2],".bmp"),".bmp");
-!!!!!if not .bmp print error message
 
-
---argv[3]--
-check for .txt
-if not print error
-
---argc[4]--
-wheather user has given the destination file or not
-
-if not create it
-
-*/
 /* Perform the encoding */
 Status do_encoding(EncodeInfo *encInfo);
 /*
@@ -85,9 +67,6 @@ Status do_encoding(EncodeInfo *encInfo);
 /* Get File pointers for i/p and o/p files */
 Status open_files(EncodeInfo *encInfo);
 /*
-
-
-
 */
 
 /* check capacity */

@@ -1,13 +1,13 @@
 #include <stdio.h>
+#include<string.h>
 #include "encode.h"
 #include "types.h"
 
-int main()
+int main(int argc,char *argv[])
 {
     EncodeInfo encInfo;
     uint img_size;
 
-    
     // Test open_files
     if (open_files(&encInfo) == e_failure)
     {
@@ -23,12 +23,12 @@ int main()
     img_size = get_image_size_for_bmp(encInfo.fptr_src_image);
     printf("INFO: Image size = %u\n", img_size);
     
-int result =check_operation_type(*argv[]);
+int result =check_operation_type(argv);
 
 if(result == e_encode){
 
 // encoding
-read_and_validate_encode_args(*argv[],*encInfo);
+read_and_validate_encode_args(argv, &encInfo);
 
 }
 else if(result == e_decode){
@@ -38,35 +38,19 @@ else if(result == e_decode){
     return 0;
 }
 
-
-
-
-
-
-
-
-
 OperationType check_operation_type(char *argv[]){
 
-    printf("%c",argv[1]);
-    if(argv[1] == '-e'){
-
-        
+    printf("%s",argv[1]);
+    if(strcmp(argv[1],"-e") == 0){ //pointer comparing with the string
         printf("we are enterring in the e- encode");
         
         return e_encode;
     }
 
-    else if(argv[1] == '-d'){
-
+    else if(strcmp(argv[1],"-d") == 0){
         printf("we are enterring the value of e_decode");
 
         return e_decode;
     }
 
 }
-
-// Fill with sample filenames
-// encInfo.src_image_fname = "beautiful.bmp";
-// encInfo.secret_fname = "secret.txt";
-// encInfo.stego_image_fname = "stego_img.bmp";

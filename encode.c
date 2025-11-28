@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<string.h>
 #include "encode.h"
 #include "types.h"
 
@@ -74,3 +75,81 @@ Status open_files(EncodeInfo *encInfo)
     return e_success;
 }
 
+Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo){
+
+ if(strcmp(strstr(argv[2],".bmp"),".bmp")){
+  
+encInfo->src_image_fname = argv[2];
+
+ }
+ else{
+    // print error message
+    fprintf(stderr,"Error:Invalid file extension");
+ }
+
+ if(strcmp(strstr(argv[3],".txt"),".txt")){
+
+    encInfo->secret_fname = argv[3];
+
+ }
+ else{
+    // print error message
+    fprintf(stderr,"Error:Invalid file extension");
+ }
+
+ if(strcmp(strstr(argv[4],".bmp"),".bmp")){
+
+ encInfo->stego_image_fname = argv[4];
+
+ }else{
+    fprintf(stderr,"Error:Invalid file extension");
+ }
+ 
+ if(strstr(argv[4],"")){
+    
+    FILE *fp;
+
+    fp=fopen("code.bmp","w");
+    
+    if(fp != NULL)
+    {
+        printf("file opened");
+        encInfo->stego_image_fname="code.bmp";
+    }
+    else{
+        printf("File not-opened");
+    }
+    fclose(fp);
+
+ }
+
+}
+
+
+
+
+
+
+
+
+
+
+    /*
+--argv[2]--
+------>check for .bmp =====>(use strstr())
+-------->pass argv[]-->return the address 
+------------------------------->then strcmp()                               
+--------------------------------------------->strcmp(strstr(argc[2],".bmp"),".bmp");
+!!!!!if not .bmp print error message
+
+--argv[3]--
+check for .txt
+if not print error
+
+--argc[4]--
+wheather user has given the destination file or not
+
+ Fill with sample filenames
+
+if not create it
+*/

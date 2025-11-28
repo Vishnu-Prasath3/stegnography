@@ -1,5 +1,5 @@
 # 5pcs of the secret data and they were #
- --char ' #* ' <--{magic string}
+ --char ' #* ' <--{magic string} 2bytes
  
  1. 4 integer- 2char
 
