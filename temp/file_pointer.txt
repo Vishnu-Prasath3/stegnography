@@ -1,8 +1,0 @@
-1.open a file
-
-FILE *fptr;
-//we can read operation file should already in there location
-fopen("text.txt", "r");
-
-
-2.

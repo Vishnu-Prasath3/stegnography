@@ -11,6 +11,9 @@
  * Description: In BMP Image, width is stored in offset 18,
  * and height after that. size is 4 bytes
  */
+
+ 
+
 uint get_image_size_for_bmp(FILE *fptr_image)
 {
     uint width, height;
@@ -36,8 +39,12 @@ uint get_image_size_for_bmp(FILE *fptr_image)
  * Output: FILE pointer for above files
  * Return Value: e_success or e_failure, on file errors
  */
+
+
+
 Status open_files(EncodeInfo *encInfo)
 {
+
     // Src Image file
     encInfo->fptr_src_image = fopen(encInfo->src_image_fname, "r");
     // Do Error handling
@@ -75,63 +82,102 @@ Status open_files(EncodeInfo *encInfo)
     return e_success;
 }
 
+
+
+
+
+
+
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo){
 
- if(strcmp(strstr(argv[2],".bmp"),".bmp")){
+ if(strcmp(strstr(argv[2],".bmp"),".bmp")==0){
   
-encInfo->src_image_fname = argv[2];
+ encInfo->src_image_fname = argv[2];
+  printf("\nThe secret image name : %s",encInfo->src_image_fname);
 
  }
  else{
     // print error message
-    fprintf(stderr,"Error:Invalid file extension");
+    printf(" %s",argv[2]);
+    fprintf(stderr,"Error:Invalid file extension .bmp");
  }
 
- if(strcmp(strstr(argv[3],".txt"),".txt")){
+//  checking for the .txt
+ if(strcmp(strstr(argv[3],".txt"),".txt")==0){
 
     encInfo->secret_fname = argv[3];
+    printf("\nThe secret image name : %s",encInfo->secret_fname);
 
  }
  else{
     // print error message
-    fprintf(stderr,"Error:Invalid file extension");
+    
+    printf("\n %s",argv[3]);
+
+    fprintf(stderr,"Error:Invalid file extension .txt");
+
  }
 
- if(strcmp(strstr(argv[4],".bmp"),".bmp")){
+//  if no name given in cli for destination file ?
+    if( strcmp(argv[3], "") ==0 ){
 
- encInfo->stego_image_fname = argv[4];
+     encInfo->fptr_stego_image = fopen("code.bmp","w");
 
- }else{
+     encInfo->stego_image_fname="code.bmp";
+
+     printf("\nThe stego_image_fname is :%s",encInfo->stego_image_fname);
+        return 1;
+
+
+    }
+
+ if(strcmp(strstr(argv[4],".bmp"),".bmp") ==0){
+
+    encInfo->stego_image_fname = argv[4];
+    printf("\nThe stego_image_fname is :%s",encInfo->stego_image_fname);
+
+}else{
     fprintf(stderr,"Error:Invalid file extension");
  }
  
- if(strstr(argv[4],"")){
-    
-    FILE *fp;
-
-    fp=fopen("code.bmp","w");
-    
-    if(fp != NULL)
-    {
-        printf("file opened");
-        encInfo->stego_image_fname="code.bmp";
-    }
-    else{
-        printf("File not-opened");
-    }
-    fclose(fp);
-
- }
-
+//   check_capacity(encInfo);
 }
 
 
 
+Status check_capacity(EncodeInfo *encInfo){
+
+    // getting size of the secret_file_size
+ 
+    fseek(encInfo->fptr_secret,0,SEEK_END);
+
+    // fptr_secretfile pointer moved to the end of file 
+
+    // ftell will return the size of the secret file size pointer
+    
+     uint size_of_secret=ftell(encInfo->fptr_secret);
+   
+    //debugging
+     printf("The size of the secret file were %d",size_of_secret); 
+
+    // return size of the .bmp
+    uint src_file_size = get_image_size_for_bmp(encInfo->fptr_src_image);
+ 
+     encInfo->size_secret_file;
+
+// check the (beautifull.bmp) image file size greater than header and    
+ 
+   if( src_file_size > ((54+2+4+4+4+size_of_secret)*8) ){
+ 
+
+    }
 
 
+}
 
+// Status copy_bmp_header(FILE *fptr_src_image, FILE *fptr_dest_image){
 
-
+// }
 
 
     /*

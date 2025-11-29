@@ -54,7 +54,6 @@ check wheather the [--check_operation--] is
 
  */
 
-
 /* Read and validate Encode args from argv */
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
 

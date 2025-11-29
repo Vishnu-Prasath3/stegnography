@@ -9,26 +9,31 @@ int main(int argc,char *argv[])
     uint img_size;
 
   
-int result =check_operation_type(argv);
+    int result = check_operation_type(argv);
 
-read_and_validate_encode_args(argv, &encInfo);
+    if(result == e_encode){
+   
+        // encoding
 
-if(result == e_encode){
-// encoding
 
+    }
+     else if(result == e_decode){
+  
+        // decoding
 
-}
-else if(result == e_decode){
-// decoding
-}
-
+    }
+    printf("\nenterring to read and validate");
+    read_and_validate_encode_args(argv, &encInfo);
+    
     return 0;
+
+
 }
 
 
 OperationType check_operation_type(char *argv[]){
 
-    printf("%s",argv[1]);
+    // printf("%s",argv[1]);
 
     if(strcmp(argv[1],"-e") == 0){
          //pointer comparing with the string
@@ -45,40 +50,3 @@ OperationType check_operation_type(char *argv[]){
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//main function files 
-  // // Test open_files
-    // if (open_files(&encInfo) == e_failure)
-    // {
-    //     printf("ERROR: %s function failed\n", "open_files" );
-    // 	return 1;
-    // }
-    // else
-    // {
-    //     printf("SUCCESS: %s function completed\n", "open_files" );
-    // }   
-    
-    // Test get_image_size_for_bmp
-    // img_size = get_image_size_for_bmp(encInfo.fptr_src_image);
-    // printf("INFO: Image size = %u\n", img_size);
-    

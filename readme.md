@@ -1,3 +1,5 @@
+### ### ### ### ### ### ### ### cli command ### ### ### ### ### ### ### ### 
+./a.out -e beautiful.bmp secret.txt code.bmp
 # 5pcs of the secret data and they were #
  --char ' #* ' <--{magic string} 2bytes
  
@@ -26,3 +28,17 @@ if(argc ==4 ){
 }
 
 ### store the image in the ->stego-image
+
+
+### do_encoding
+ => open files
+ 
+ =>check capacity
+ 
+ =>copy_bmp_header
+ 
+ =>encode_magic_string
+ 
+ =>encode_secret_file_extn_size
+
+ =>encode_secret_file_extn

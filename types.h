@@ -11,6 +11,7 @@ typedef enum
     e_failure
 } Status;
 
+
 typedef enum
 {
     e_encode,
