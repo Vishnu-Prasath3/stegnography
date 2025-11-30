@@ -9,6 +9,7 @@ int main(int argc,char *argv[])
 
     uint img_size;
 
+    encInfo.argc=argc;
     int result = check_operation_type(argv);
 
     if(result == e_encode){
@@ -23,6 +24,7 @@ int main(int argc,char *argv[])
     open_files(&encInfo);
     
     check_capacity(&encInfo);
+
     return 0;
 
 }

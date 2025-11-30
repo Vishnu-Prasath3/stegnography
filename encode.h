@@ -24,6 +24,7 @@ typedef struct _EncodeInfo
     FILE *fptr_src_image;
     uint image_capacity;
     uint bits_per_pixel;
+    int argc;
     char image_data[MAX_IMAGE_BUF_SIZE];
 
     /* Secret File Info */

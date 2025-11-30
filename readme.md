@@ -51,3 +51,5 @@ if(argc ==4 ){
  =>encode_secret_file_extn_size
 
  =>encode_secret_file_extn
+
+ <!-- use rewind() to se the pointer position to starting point -->

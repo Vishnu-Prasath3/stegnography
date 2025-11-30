@@ -12,20 +12,26 @@
  * and height after that. size is 4 bytes
  */
 
+
+
+
+
 uint get_image_size_for_bmp(FILE *fptr_image)
 {
     uint width, height;
     // Seek to 18th byte
+    // the pointer moved to 18
     fseek(fptr_image, 18, SEEK_SET);
 
     // Read the width (an int)
     fread(&width, sizeof(int), 1, fptr_image);
-    printf("width = %u\n", width);
+    // printf("width = %u\n", width);
 
     // Read the height (an int)
     fread(&height, sizeof(int), 1, fptr_image);
-    printf("height = %u\n", height);
+    // printf("height = %u\n", height);
 
+    rewind(fptr_image);
     // Return image capacity
     return width * height * 3;
 }
@@ -37,6 +43,12 @@ uint get_image_size_for_bmp(FILE *fptr_image)
  * Output: FILE pointer for above files
  * Return Value: e_success or e_failure, on file errors
  */
+
+
+
+
+
+
 
 Status open_files(EncodeInfo *encInfo)
 {
@@ -77,7 +89,21 @@ Status open_files(EncodeInfo *encInfo)
 
     // No failure return e_success
     return e_success;
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo)
 {
@@ -128,9 +154,19 @@ Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo)
         return 1;
     }
 
-    if (strcmp(strstr(argv[4], ".bmp"), ".bmp") == 0)
+    // if no name assigned to the destination image then assign name
+    if((encInfo->argc)  <= 4){
+        
+        encInfo->fptr_stego_image = fopen("code.bmp","w");
+
+        encInfo->stego_image_fname = "code.bmp";
+
+    }
+
+    else if(strcmp(strstr(argv[4], ".bmp"), ".bmp") == 0)
     {
-        // assigning stego image name
+
+        // assigning destination image name
         encInfo->stego_image_fname = argv[4];
         // printf("\nThe stego_image_fname is :%s", encInfo->stego_image_fname);
     }
@@ -139,7 +175,20 @@ Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo)
         fprintf(stderr, "Error:Invalid file extension");
     }
 
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 Status check_capacity(EncodeInfo *encInfo)
 {
@@ -160,6 +209,35 @@ Status check_capacity(EncodeInfo *encInfo)
     // encInfo->size_secret_file;
 
     // check the (beautifull.bmp) image file size greater than header
+    
+    
+    encInfo->image_capacity = get_image_size_for_bmp( encInfo->fptr_src_image);
 
+    // printf("The image capacity of the image were %ld",encInfo->image_capacity);
+        if( encInfo->image_capacity  >   ((54+4+4+4+size_of_secret)*8)   )
+      {
+         printf("Enough Capacity");
+     }
+        else
+    {
+        printf("Not Enough Capacity");
+    }
+    
+    // printf("The length of the  sorce img capacity %ld The calculated lenth of the size wewre %ld ",encInfo->image_capacity,size_of_secret);
+    
     return e_success;
+
+}
+
+
+
+Status copy_bmp_header(FILE *fptr_src_image, FILE *fptr_dest_image)
+{
+
+    // fread()number of bytes read successfully
+    char arr[1000];
+    fread(arr,sizeof(char),18,fptr_src_image);
+
+
+
 }
