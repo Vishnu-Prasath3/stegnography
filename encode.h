@@ -59,14 +59,9 @@ Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
 
 /* Perform the encoding */
 Status do_encoding(EncodeInfo *encInfo);
-/*
-
-*/
 
 /* Get File pointers for i/p and o/p files */
 Status open_files(EncodeInfo *encInfo);
-/*
-*/
 
 /* check capacity */
 Status check_capacity(EncodeInfo *encInfo);

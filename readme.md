@@ -1,5 +1,14 @@
 ### ### ### ### ### ### ### ### cli command ### ### ### ### ### ### ### ### 
 ./a.out -e beautiful.bmp secret.txt code.bmp
+
+## 1. open file
+
+## 2. check capacity
+
+## 3.copy .bmp header
+
+## 4.encode magic string
+
 # 5pcs of the secret data and they were #
  --char ' #* ' <--{magic string} 2bytes
  
