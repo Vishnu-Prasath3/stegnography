@@ -8,8 +8,7 @@ int main(int argc,char *argv[])
     EncodeInfo encInfo;
 
     uint img_size;
-
-    encInfo.argc=argc;
+    
     int result = check_operation_type(argv);
 
     if(result == e_encode){

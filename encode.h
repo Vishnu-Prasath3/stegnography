@@ -3,28 +3,27 @@
 
 #include "types.h" // Contains user defined types
 
-/* 
+/*
  * Structure to store information required for
  * encoding secret file to source Image
  * Info about output and intermediate data is
  * also stored
- * 
+ *
  */
 
 #define MAX_SECRET_BUF_SIZE 1
 #define MAX_IMAGE_BUF_SIZE (MAX_SECRET_BUF_SIZE * 8)
 #define MAX_FILE_SUFFIX 4
-
+#define MAGIC_STRING "#*"
 /*structure for encoding the path*/
 
 typedef struct _EncodeInfo
 {
     /* Source Image info */
-    char *src_image_fname; 
+    char *src_image_fname;
     FILE *fptr_src_image;
     uint image_capacity;
     uint bits_per_pixel;
-    int argc;
     char image_data[MAX_IMAGE_BUF_SIZE];
 
     /* Secret File Info */
@@ -40,20 +39,10 @@ typedef struct _EncodeInfo
 
 } EncodeInfo;
 
-
 /* Encoding function prototype */
 
 /* Check operation type */
 OperationType check_operation_type(char *argv[]);
-
-/*
-check wheather the [--check_operation--] is 
-
- argv[1] == -e
-
- argc[1] === -d
-
- */
 
 /* Read and validate Encode args from argv */
 Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo);
