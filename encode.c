@@ -3,6 +3,7 @@
 #include "encode.h"
 #include "types.h"
 
+
 /* Function Definitions */
 
 /* Get image size
@@ -166,13 +167,6 @@ Status read_and_validate_encode_args(char *argv[], EncodeInfo *encInfo)
 
 
 
-
-
-
-
-
-
-
 Status check_capacity(EncodeInfo *encInfo)
 {
     // getting size of the secret_file_size 
@@ -241,7 +235,7 @@ Status encode_byte_to_lsb(char data, char *image_buffer){
     }
 }
 
-Status encode_magic_string(const char *magic_string, EncodeInfo *encInfo)
+Status encode_magic_string( char *magic_string, EncodeInfo *encInfo)
 {
     encode_data_to_image(magic_string, strlen(magic_string), encInfo->fptr_src_image, encInfo->fptr_stego_image);
     return e_success;
@@ -288,6 +282,12 @@ Status encode_secret_file_size(long file_size, EncodeInfo *encInfo){
     return e_success;
 }
 
+Status encode_secret_file_extn(const char* file_ext, EncodeInfo* encInfo)
+{
+    file_ext = ".txt";
+    encode_data_to_image(file_ext, strlen(file_ext), encInfo -> fptr_src_image, encInfo -> fptr_stego_image, encInfo);
+    return e_success;
+}
 
 
 

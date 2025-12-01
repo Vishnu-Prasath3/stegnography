@@ -1,28 +1,35 @@
 #include <stdio.h>
 #include<string.h>
 #include "encode.h"
+#include "decode.h"
 #include "types.h"
 
 int main(int argc,char *argv[])
 {
     EncodeInfo encInfo;
-
     uint img_size;
-    
+
+    DECODE_INFO decode_info;
+
+     
+
     int result = check_operation_type(argv);
 
     if(result == e_encode){
         // encoding
+        do_encoding(&encInfo);
     }
      else if(result == e_decode){
-        // decoding
+        
+        do_decoding( &decode_info );
+
     }
     
-    read_and_validate_encode_args(argv, &encInfo);
+    // read_and_validate_encode_args(argv, &encInfo);
 
-    open_files(&encInfo);
+    // open_files(&encInfo);
     
-    check_capacity(&encInfo);
+    // check_capacity(&encInfo);
 
     return 0;
 
