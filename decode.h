@@ -21,7 +21,7 @@ Status check_operation( );
 
 Status read_and_validation();
 
-Status do_decoding(DECODE_INFO decode_info);
+Status do_decoding(DECODE_INFO decode_info,char *argv[]);
 
 Status open_files();
 

@@ -21,16 +21,10 @@ int main(int argc,char *argv[])
     }
      else if(result == e_decode){
         
-        do_decoding( &decode_info );
+        do_decoding(decode_info,argv);
 
     }
     
-    // read_and_validate_encode_args(argv, &encInfo);
-
-    // open_files(&encInfo);
-    
-    // check_capacity(&encInfo);
-
     return 0;
 
 }
@@ -40,15 +34,18 @@ OperationType check_operation_type(char *argv[]){
     // printf("%s",argv[1]);
 
     if(strcmp(argv[1],"-e") == 0){
-         //pointer comparing with the string
-        // printf("we are enterring in the e- encode");
+    
         
         return e_encode;
 
     }
 
     else if(strcmp(argv[1],"-d") == 0){
+        
         printf("we are enterring the value of e_decode");
+
+
+        
 
         return e_decode;
     }

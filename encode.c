@@ -13,10 +13,6 @@
  * and height after that. size is 4 bytes
  */
 
-
-
-
-
 uint get_image_size_for_bmp(FILE *fptr_image)
 {
     uint width, height;
@@ -44,10 +40,6 @@ uint get_image_size_for_bmp(FILE *fptr_image)
  * Output: FILE pointer for above files
  * Return Value: e_success or e_failure, on file errors
  */
-
-
-
-
 
 
 
@@ -90,18 +82,7 @@ Status open_files(EncodeInfo *encInfo)
 
     // No failure return e_success
     return e_success;
-
-
-
 }
-
-
-
-
-
-
-
-
 
 
 
